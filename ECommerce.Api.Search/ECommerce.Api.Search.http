@@ -1,0 +1,10 @@
+@ECommerce.Api.Search_HostAddress = http://localhost:6004
+
+POST {{ECommerce.Api.Search_HostAddress}}/api/search
+Content-Type: application/json
+
+{
+  "customerId": 1
+}
+
+###

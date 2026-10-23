@@ -1,0 +1,6 @@
+@ECommerce.Api.Orders_HostAddress = http://localhost:6003
+
+GET {{ECommerce.Api.Orders_HostAddress}}/api/orders/1
+Accept: application/json
+
+###

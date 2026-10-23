@@ -1,0 +1,11 @@
+@ECommerce.Api.Customers_HostAddress = http://localhost:6002
+
+GET {{ECommerce.Api.Customers_HostAddress}}/api/customers
+Accept: application/json
+
+###
+
+GET {{ECommerce.Api.Customers_HostAddress}}/api/customers/1
+Accept: application/json
+
+###

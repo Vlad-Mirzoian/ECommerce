@@ -1,0 +1,33 @@
+# Builds the four microservice images and pushes them to Docker Hub.
+#
+# Before the first run, create in the GitHub repository
+# (Settings > Secrets and variables > Actions):
+#   variable DOCKERHUB_USERNAME - your Docker ID
+#   secret   DOCKERHUB_TOKEN    - a Docker Hub access token with Read & Write permission
+name: Docker publish
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    env:
+      DOCKER_REGISTRY: ${{ vars.DOCKERHUB_USERNAME }}/
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build service images
+        run: docker compose --file docker-compose.yml build
+
+      - name: Push service images
+        run: docker compose --file docker-compose.yml push
